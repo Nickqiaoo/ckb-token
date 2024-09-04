@@ -13,7 +13,7 @@ async function deploySudt() {
   const sudtPath = path.resolve('../build/release/sudt');
   const sudtBinary = fs.readFileSync(sudtPath);
   const sudtSize = sudtBinary.length;
-  const requiredCapacity = BigInt(sudtSize) + BigInt(61) ;
+  const requiredCapacity = BigInt(sudtSize) + BigInt(61+65) ;
   try {
     // 构建交易
     const tx = ccc.Transaction.from({
@@ -25,6 +25,10 @@ async function deploySudt() {
             hashType: 'type',
             args: '0x'
           },
+        //   type:await ccc.Script.fromKnownScript(
+        //     signer.client,
+        //     ccc.KnownScript.TypeId,
+        //     "00".repeat(32))
         }
       ],
       outputsData: [ccc.bytesFrom(sudtBinary)],
@@ -33,7 +37,12 @@ async function deploySudt() {
     // 完成交易的输入和手续费
     await tx.completeInputsByCapacity(signer);
     await tx.completeFeeBy(signer, 1000);
-
+    // if (tx.outputs[0].type) {
+    //   tx.outputs[0].type.args = ccc.hashTypeId(
+    //     tx.inputs[0],
+    //     0
+    //   );
+    // }
     // 签名并发送交易
     const txHash = await signer.sendTransaction(tx);
     console.log('Contract deployed, tx hash:', txHash);

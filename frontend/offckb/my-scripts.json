@@ -18,13 +18,13 @@
   },
   "testnet": {
     "sudt": {
-      "codeHash": "0x31315d89e395d5e0f77b96163099301bb30a582534f4e9d6f381171e590d3275",
-      "hashType": "data",
+      "codeHash": "0x20b2173f6a6a6cc2e65b571ba7cb184704f81aa02dd8ffc492a77ca3a463f382",
+      "hashType": "data1",
       "cellDeps": [
         {
           "cellDep": {
             "outPoint": {
-              "txHash": "0xc08a50a1d060674eb904ae52399a781a0fe6903d119bea3899ce485676925ec2",
+              "txHash": "0xcdaf8565e6dddd7e173a18d824f8c9e3c89137376e8746cf923899c097132c65",
               "index": 0
             },
             "depType": "code"
